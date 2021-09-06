@@ -6,11 +6,10 @@ import "./index.css";
 
 // import { data } from "./books";
 // import SpecificBook from "./Book";
-import { greeting } from "./testing/testing";
 import ExpenseItem from "./components/ExpenseItem";
 
-function BookList() {
-  console.log(greeting);
+const Expenses = () => {
+
   const expenses = [
     {
       id: "e1",
@@ -34,11 +33,6 @@ function BookList() {
   ];
   return (
     <React.Fragment>
-      {/* <section className="booklist">
-        {data.map((book, index) => {
-          return <SpecificBook key={book.id} {...book}></SpecificBook>;
-        })}
-      </section> */}
       <div>
         {expenses.map((elemn, index) => {
           return (
@@ -55,4 +49,4 @@ function BookList() {
   );
 }
 
-ReactDom.render(<BookList />, document.getElementById("root"));
+ReactDom.render(<Expenses />, document.getElementById("root"));

@@ -2,7 +2,7 @@ import React from "react";
 import ExpenseDate from "./ExpenseDate";
 import "./ExpenseItem.css";
 
-function ExpenseItem(props) {
+const ExpenseItem = (props) => {
   
   return (
     <div className="expense-item" id={props.id}>
@@ -11,6 +11,7 @@ function ExpenseItem(props) {
         <h2>{props.title}</h2>
         <div className="expense-item__price">$ {props.amount} </div>
       </div>
+      <button>Change Title</button>
     </div>
   );
 }
