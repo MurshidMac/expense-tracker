@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDom from "react-dom";
 
 // CSS
@@ -7,9 +7,11 @@ import "./index.css";
 // import { data } from "./books";
 // import SpecificBook from "./Book";
 import ExpenseItem from "./components/ExpenseItem";
+import NewExpense from "./components/NewExpense";
 
 const Expenses = () => {
 
+  const [allExpense, setAllExpense] = useState([]) 
   const expenses = [
     {
       id: "e1",
@@ -31,8 +33,20 @@ const Expenses = () => {
       date: new Date(2021, 5, 12),
     },
   ];
+
+
+  const addExpenseHandler = (newExpenseObj) => {
+      expenses.push(newExpenseObj);
+      console.log('Ín App.js ', newExpenseObj)
+      //allExpense = [...expenses];
+      setAllExpense(allExpense)
+  }
+
+
+
   return (
     <React.Fragment>
+      <NewExpense onNewAddExpense={addExpenseHandler} />
       <div>
         {expenses.map((elemn, index) => {
           return (
