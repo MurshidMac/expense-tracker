@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDom from "react-dom";
 
 // CSS
@@ -6,11 +6,12 @@ import "./index.css";
 
 // import { data } from "./books";
 // import SpecificBook from "./Book";
-import { greeting } from "./testing/testing";
 import ExpenseItem from "./components/ExpenseItem";
+import NewExpense from "./components/NewExpense";
 
-function BookList() {
-  console.log(greeting);
+const Expenses = () => {
+
+  const [allExpense, setAllExpense] = useState([]) 
   const expenses = [
     {
       id: "e1",
@@ -32,13 +33,20 @@ function BookList() {
       date: new Date(2021, 5, 12),
     },
   ];
+
+
+  const addExpenseHandler = (newExpenseObj) => {
+      expenses.push(newExpenseObj);
+      console.log('Ín App.js ', newExpenseObj)
+      //allExpense = [...expenses];
+      setAllExpense(allExpense)
+  }
+
+
+
   return (
     <React.Fragment>
-      {/* <section className="booklist">
-        {data.map((book, index) => {
-          return <SpecificBook key={book.id} {...book}></SpecificBook>;
-        })}
-      </section> */}
+      <NewExpense onNewAddExpense={addExpenseHandler} />
       <div>
         {expenses.map((elemn, index) => {
           return (
@@ -55,4 +63,4 @@ function BookList() {
   );
 }
 
-ReactDom.render(<BookList />, document.getElementById("root"));
+ReactDom.render(<Expenses />, document.getElementById("root"));
