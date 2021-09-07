@@ -6,9 +6,9 @@ import "./index.css";
 
 // import { data } from "./books";
 // import SpecificBook from "./Book";
-import ExpenseItem from "./components/ExpenseItem";
 import NewExpense from "./components/NewExpense";
 import ExpensesFilter from "./components/ExpenseFilter";
+import ExpensesList from "./components/ExpensesList";
 
 
 const DUMMY_DATA = [
@@ -41,6 +41,11 @@ const Expenses = () => {
     setFilteredYear(selectedYear);
   };
   
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
+
+
   const addExpenseHandler = (newExpenseObj) => {
       console.log('Ín App.js ', newExpenseObj)
       //allExpense = [...expenses];
@@ -54,17 +59,8 @@ const Expenses = () => {
       <ExpensesFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
-        />
-        {expenses.map((elemn, index) => {
-          return (
-            <ExpenseItem
-              key={elemn.id}
-              title={elemn.title}
-              amount={elemn.amount}
-              date={elemn.date}
-            />
-          );
-        })}
+      />
+        <ExpensesList expenses={filteredExpenses}/>
       </div>
     </React.Fragment>
   );
