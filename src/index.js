@@ -9,7 +9,7 @@ import "./index.css";
 import NewExpense from "./components/NewExpense";
 import ExpensesFilter from "./components/ExpenseFilter";
 import ExpensesList from "./components/ExpensesList";
-
+import ExpensesChart from "./components/ExpensesChart";
 
 const DUMMY_DATA = [
   {
@@ -34,36 +34,38 @@ const DUMMY_DATA = [
 ];
 
 const Expenses = () => {
-  const [filteredYear, setFilteredYear] = useState('2021');
-  const [expenses, setExpenses] = useState(DUMMY_DATA) 
+  const [filteredYear, setFilteredYear] = useState("2021");
+  const [expenses, setExpenses] = useState(DUMMY_DATA);
 
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
-  
+
   const filteredExpenses = expenses.filter((expense) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
 
-
   const addExpenseHandler = (newExpenseObj) => {
-      console.log('Ín App.js ', newExpenseObj)
-      //allExpense = [...expenses];
-      setExpenses((prevExpenses) => { return [newExpenseObj, ...prevExpenses]})
-  }
+    console.log("Ín App.js ", newExpenseObj);
+    //allExpense = [...expenses];
+    setExpenses((prevExpenses) => {
+      return [newExpenseObj, ...prevExpenses];
+    });
+  };
 
   return (
     <React.Fragment>
       <NewExpense onNewAddExpense={addExpenseHandler} />
       <div>
-      <ExpensesFilter
+        <ExpensesFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
-      />
-        <ExpensesList expenses={filteredExpenses}/>
+        />
+        <ExpensesChart expenses={filteredExpenses} />
+        <ExpensesList expenses={filteredExpenses} />
       </div>
     </React.Fragment>
   );
-}
+};
 
 ReactDom.render(<Expenses />, document.getElementById("root"));
